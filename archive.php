@@ -1,21 +1,25 @@
 <?php get_header();?>
     <div class="container pt-5 pb-5">
-        <h1><?php single_cat_title();?></h1>
-        <p>archive</p>
-    <?php if (have_posts()) : while(have_posts()) : the_post(); ?>
-    
-    <div class="card mb-2" style="width: 18rem;">
-    <?php if(has_post_thumbnail()):?>
-                <?php the_post_thumbnail('medium', array('class' => 'card-img-top')); ?>
-    <?php endif;?> 
-        <div class="card-body">
-        
-                <h5 class="card-title"><?php the_title() ?></h5>  
-                <p class="card-text"><?php the_excerpt() ?></p>    
-                <a class="btn btn-primary" href="<?php the_permalink();?>">Read more</a>
+        <h1>Test get_posts</h1>
+   
+        <?php
+$args = array(
+  'post_type'   => 'cars',
+  'order'       => 'ASC',
+  'orderby'     => 'title'
+);
+$posts = get_posts( $args );
 
-        </div>
-    </div>
-    <?php endwhile; endif;?>
+if ($posts) : ?>
+  <ul>
+    <?php foreach ( $posts as $post ) : setup_postdata( $post ); ?>
+      <li><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></li>
+      <?php the_post_thumbnail( 'small'); ?>
+      <p><?php the_excerpt()?></p>
+    <?php endforeach; wp_reset_postdata(); ?>
+  </ul>
+<?php endif; ?>
+        
+
     </div>    
 <?php get_footer();?>

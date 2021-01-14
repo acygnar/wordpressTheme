@@ -22,6 +22,7 @@
         <?php if (have_posts()) : while(have_posts()) : the_post(); ?>
 
             <?php the_content() ?>
+            <?php the_author() ?>
             <p>Cena: <?php echo get_post_meta($post->ID, 'Cena', true);?></p> 
 
         <?php endwhile; endif;?>

@@ -10,3 +10,14 @@
         <?php endwhile; endif;?>
     </div>    
 <?php get_footer();?>
+
+ <?php if (is_page('GetPosts')) {
+    echo "Posty pobrane za pomocą get_posts()";
+
+    $args = array(
+        'numberposts' => 5,
+        'post_type' => 'cars',
+      );
+
+    $posts = get_posts($args);
+}?>

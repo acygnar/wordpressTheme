@@ -6,6 +6,7 @@
         <?php if (have_posts()) : while(have_posts()) : the_post(); ?>
 
             <?php the_content() ?>
+            <a class="btn btn-success" href="<?php the_permalink();?>">Read more</a>
 
         <?php endwhile; endif;?>
     </div>    
