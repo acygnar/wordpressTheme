@@ -25,6 +25,39 @@
             <?php the_author() ?>
             <p>Cena: <?php echo get_post_meta($post->ID, 'Cena', true);?></p> 
 
+
+            <?php if( get_field('Tekst') ): ?>
+            <h2><?php the_field('Tekst'); ?></h2>
+            <?php endif; ?>
+
+            <?php if( get_field('wysiwyg nazwa') ): ?>
+            <div class="acf-field"><?php the_field('wysiwyg_nazwa'); ?></div>
+            <?php endif; ?>
+
+            <p>Test flexible content</p>
+
+           
+
+            <p>Wyświetlanie grupy postów </p>
+            
+            <div class="row">  
+<?php 
+    $specifications_fields = get_specifications_fields();
+              
+    foreach ( $specifications_fields as $name => $field ):
+        $value = $field['value'];
+?>     
+     
+    <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-xs-12 key">
+        <strong><?php echo $field['label']; ?>:</strong>
+    </div>
+    <div class="col-xl-9 col-lg-8 col-md-8 col-sm-6 col-xs-12 value">
+        <?php echo $value; ?>      
+    </div> 
+         
+    <?php endforeach; ?>
+</div> 
+
         <?php endwhile; endif;?>
     </div>    
 <?php get_footer();?>

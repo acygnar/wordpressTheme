@@ -40,7 +40,7 @@ add_action('wp_enqueue_scripts', 'loadjs');
 add_theme_support('menus');                      
 add_theme_support( 'post-thumbnails' );
 add_image_size( 'small', 200, 100, true); 
-add_image_size('medium',500,500, false);                                    //Dlaczego zmienia wymiary?
+add_image_size('medium',500,500, false);                                    
   
 
 
@@ -176,5 +176,31 @@ elseif(is_archive()){
 
 
 ///////////////////////////ACF/////////////////////////////////////
+
+
+function get_specifications_fields() {
+
+	global $post;
+	
+	$specifications_group_id = 479; // Post ID of the specifications field group.
+	$specifications_fields = array();
+	
+	$fields = acf_get_fields( $specifications_group_id );
+	
+	foreach ( $fields as $field ) {
+		$field_value = get_field( $field['name'] );
+		
+		if ( $field_value && !empty( $field_value ) ) {
+			$specifications_fields[$field['name']] = $field;
+			$specifications_fields[$field['name']]['value'] = $field_value;
+		}
+	}
+	
+	return $specifications_fields;
+
+}
+
+
+
 
 ?>
