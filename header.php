@@ -7,6 +7,7 @@
 </head>
 <body <?php body_class();?>>
 
+
 <header>
 
     <div class="container">
@@ -23,4 +24,9 @@
 </div>
 
 </header>
+<?php
+if ( function_exists('yoast_breadcrumb') ) {
+  yoast_breadcrumb( '<p id="breadcrumbs">','</p>' );
+}
+?>
     
